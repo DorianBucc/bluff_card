@@ -3,25 +3,45 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-
+    public static PlayerManager instance;
+    private int indexPlayer = 0;
+    private int CountPlayer;
     public Player currentPlayer;
     public List<Player> listPlayers = new();
 
-    public void nextRound()
+    public void Awake()
     {
-    // prend le prochain joueur
-    // joueur.startRound()
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
+    {
+        CountPlayer = listPlayers.Count;
+    }
+    public void nextGameTurn()// Tour suivant
+    {   
+        indexPlayer++;
+        indexPlayer = indexPlayer%CountPlayer;
+        currentPlayer = listPlayers[indexPlayer];
+        currentPlayer.newTurn();
+        // prend le prochain joueur
+        // joueur.startRound()
+    }
+    public void nextRound() // Nouvelle ou prochaine manche
+    {
+        
+    }
+    public void removePreviousPlayer()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void removeCards(List<CardTypeData> listCard)
     {
-        
+        currentPlayer.RemoveCard(listCard);
     }
+
 }
