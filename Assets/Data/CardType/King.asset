@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardTypeData
   type: 2
   cardName: Roi
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a961ff626e000ac43a823efdfbb94db2, type: 3}
