@@ -3,16 +3,24 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
+    public static CardManager instance;
+    public List<CardTypeData> selectedCards = new();
 
-    public List<CardTypeData> Stack;
-    public List<CardTypeData> CardSelected;
-
-    public void AddCardSelected()
+    public void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        } 
     }
-    public void ConfirmCard()
+
+    public void AddSelectedCard(CardTypeData card)
     {
-        // PlayerManager cards : utiliser
+        selectedCards.Add(card);
+    }
+
+    public void RemoveSelectedCard(CardTypeData card)
+    {
+        selectedCards.Remove(card);
     }
 }

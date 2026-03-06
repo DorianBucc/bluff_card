@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public CardTypeData typeCardData;
+    public CardTypeData cardTypeData;
     public Image imageUI;
     public Sprite backSprite;
-    public bool selected = false;
+    public bool isSelected = false;
 
     public void Start()
     {
@@ -15,18 +15,26 @@ public class Card : MonoBehaviour
 
     public void Show()
     {
-        imageUI.sprite = typeCardData.sprite;
+        imageUI.sprite = cardTypeData.sprite;
     }
 
     public void Hide()
     {
         imageUI.sprite = backSprite;
     }
-    public void selectCardToggle()
+    public void Toggle()
     {
-        if (!selected)
+        if (!isSelected)
         {
-            //CardManager
+            Hide();
+            CardManager.instance.AddSelectedCard(cardTypeData);
         }
+        else
+        {
+            Show();
+            CardManager.instance.RemoveSelectedCard(cardTypeData);
+        }
+        
+        isSelected = !isSelected;
     }
 }
