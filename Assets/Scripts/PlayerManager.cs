@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        CountPlayer = listPlayers.Count;
+        // CountPlayer = listPlayers.Count;
     }
     public void nextGameTurn()// Tour suivant
     {   
