@@ -6,6 +6,7 @@ public class Card : MonoBehaviour
     public CardTypeData typeCardData;
     public Image imageUI;
     public Sprite backSprite;
+    public bool selected = false;
 
     public void Start()
     {
@@ -20,5 +21,12 @@ public class Card : MonoBehaviour
     public void Hide()
     {
         imageUI.sprite = backSprite;
+    }
+    public void selectCardToggle()
+    {
+        if (!selected)
+        {
+            //CardManager
+        }
     }
 }

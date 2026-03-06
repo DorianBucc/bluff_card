@@ -1,16 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public List<CardTypeData> cards = new();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void startRound(){} // Envoyer les cartes cardUIManager singleton
+
 }

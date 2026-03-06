@@ -1,16 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public List<CardTypeData> Stack;
+    public List<CardTypeData> CardSelected;
+
+    public void AddCardSelected()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ConfirmCard()
     {
-        
+        // PlayerManager cards : utiliser
     }
 }
