@@ -5,6 +5,7 @@ public class CardUIManager : MonoBehaviour
 {
     static public CardUIManager instance;
     public List<CardUI> deck = new();
+
     public void Awake()
     {
         if (instance == null)
@@ -16,10 +17,14 @@ public class CardUIManager : MonoBehaviour
     public void LoadPlayerDeck(List<Card> cards)
     {
         int index = 0;
+
         foreach (Card card in cards)
         {
-            deck[index].card = card;
-            deck[index].Show();
+            CardUI cardUI = deck[index];
+
+            cardUI.card = card;
+            cardUI.Show();
+            
             index++;
         }
         

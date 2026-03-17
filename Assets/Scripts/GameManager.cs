@@ -2,9 +2,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+    
     void Start()
     {
-        PlayerManager.instance.NextGameTurn();
+        PlayerManager.instance.NextTurn();
     }
 
     public void NextGameTurn()
@@ -12,6 +22,7 @@ public class GameManager : MonoBehaviour
         CardManager.instance.ConfirmCardSelected();
     }
 
-    public void EndRound(){}
-    public void EndRoundLiar(){}
+    public void EndRound() {}
+    
+    public void EndRoundLiar() {}
 }

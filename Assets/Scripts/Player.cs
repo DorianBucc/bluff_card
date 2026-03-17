@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public void NewTurn()
     {
         CardUIManager.instance.LoadPlayerDeck(cards);
-    } // Envoyer les cartes cardUIManager singleton
+    }
 
     public void RemoveCard(List<Card> listCard)
     {

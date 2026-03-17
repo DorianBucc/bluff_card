@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
     private int playerIndex = 0;
     public Player currentPlayer;
-    public List<Player> listPlayers = new();
+    public List<Player> players = new();
 
     public void Awake()
     {
@@ -16,31 +16,28 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        // CountPlayer = listPlayers.Count;
-    }
-
     public int GetPlayerCount()
     {
-        return listPlayers.Count;
+        return players.Count;
     }
 
-    public void NextGameTurn() // Tour suivant
+    public void NextTurn()
     {   
         playerIndex++;
         playerIndex %= GetPlayerCount();
 
-        currentPlayer = listPlayers[playerIndex];
+        currentPlayer = players[playerIndex];
         currentPlayer.NewTurn();
         
         // prend le prochain joueur
         // joueur.startRound()
     }
-    public void NextRound() // Manche suivante
+
+    public void NextRound()
     {
         
     }
+    
     public void RemovePreviousPlayer()
     {
         
