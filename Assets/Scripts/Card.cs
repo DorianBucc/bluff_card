@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card
 {
     public int id;
     public CardTypeData typeData;
