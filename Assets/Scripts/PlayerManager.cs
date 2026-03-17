@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    public void RemoveCards(List<CardTypeData> listCard)
+    public void RemoveCards(List<Card> listCard)
     {
         currentPlayer.RemoveCard(listCard);
     }

@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public List<CardTypeData> cards = new();
+    public List<Card> cards = new();
 
     public void NewTurn()
     {
-        
+        CardUIManager.instance.LoadPlayerDeck(cards);
     } // Envoyer les cartes cardUIManager singleton
 
-    public void RemoveCard(List<CardTypeData> listCard)
+    public void RemoveCard(List<Card> listCard)
     {
-        foreach (CardTypeData card in listCard)
+        foreach (Card card in listCard)
         {
             cards.Remove(card);
         }

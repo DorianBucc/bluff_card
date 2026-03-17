@@ -4,7 +4,7 @@ using UnityEngine;
 public class StackManager : MonoBehaviour
 {
     public static StackManager instance;
-    public List<CardTypeData> stack = new();
+    public List<Card> stack = new();
 
     public void Awake()
     {
@@ -14,8 +14,8 @@ public class StackManager : MonoBehaviour
         } 
     }
 
-    public void UpdateStack(List<CardTypeData> cards)
+    public void UpdateStack(List<Card> cards)
     {
-        stack = new List<CardTypeData>(cards);
+        stack = new List<Card>(cards);
     }
 }

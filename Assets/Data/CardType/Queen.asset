@@ -15,3 +15,4 @@ MonoBehaviour:
   type: 1
   cardName: Reine
   sprite: {fileID: 21300000, guid: 6396257de6b54c745bb000426052d462, type: 3}
+  Id: 0

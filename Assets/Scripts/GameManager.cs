@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     void Start()
     {
+        PlayerManager.instance.NextGameTurn();
     }
 
     public void NextGameTurn()

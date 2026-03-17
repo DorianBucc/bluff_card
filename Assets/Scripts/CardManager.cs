@@ -4,7 +4,7 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     public static CardManager instance;
-    public List<CardTypeData> selectedCards = new();
+    public List<Card> selectedCards = new();
 
     public void Awake()
     {
@@ -14,12 +14,12 @@ public class CardManager : MonoBehaviour
         } 
     }
 
-    public void AddSelectedCard(CardTypeData card)
+    public void AddSelectedCard(Card card)
     {
         selectedCards.Add(card);
     }
 
-    public void RemoveSelectedCard(CardTypeData card)
+    public void RemoveSelectedCard(Card card)
     {
         selectedCards.Remove(card);
     }
