@@ -19,6 +19,7 @@ public class CardUIManager : MonoBehaviour
         foreach (Card card in cards)
         {
             deck[index].card = card;
+            deck[index].Show();
             index++;
         }
         

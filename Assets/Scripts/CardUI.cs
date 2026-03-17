@@ -8,11 +8,6 @@ public class CardUI : MonoBehaviour
     public Sprite backSprite;
     public bool isSelected = false;
 
-    public void Start()
-    {
-        Show();
-    }
-
     public void Show()
     {
         imageUI.sprite = card.typeData.sprite;
