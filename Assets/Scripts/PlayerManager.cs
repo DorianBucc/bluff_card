@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    private int playerIndex = 0;
-    public Player currentPlayer;
     public List<Player> players = new();
+    public Player currentPlayer;
+    private int playerIndex = 0;
 
     public void Awake()
     {
@@ -16,28 +16,49 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void InitializePlayers(List<Player> players)
+    {
+        if (players == null || players.Count <= 0)
+        {
+            return;
+        }
+
+        this.players = new List<Player>(players);
+
+        playerIndex = 0;
+
+        currentPlayer = this.players[0];
+    }
+
     public int GetPlayerCount()
     {
         return players.Count;
     }
 
-    public void NextTurn()
+    public void DealCards(List<Card> cards, int cardsPerPlayer)
+    {
+        int cardIndex = 0;
+
+        foreach (Player player in players)
+        {
+            for (int i = 0; i < cardsPerPlayer; i++)
+            {
+                player.AddCard(cards[cardIndex]);
+                
+                cardIndex++;
+            }
+        }
+    }
+
+    public void NextPlayer()
     {   
-        playerIndex++;
-        playerIndex %= GetPlayerCount();
+        playerIndex = (playerIndex + 1) % GetPlayerCount();
 
         currentPlayer = players[playerIndex];
-        currentPlayer.NewTurn();
         
-        // prend le prochain joueur
-        // joueur.startRound()
+        CardUIManager.instance.DisplayDeck(currentPlayer.cards);
     }
 
-    public void NextRound()
-    {
-        
-    }
-    
     public void RemovePreviousPlayer()
     {
         
@@ -45,7 +66,6 @@ public class PlayerManager : MonoBehaviour
 
     public void RemoveCards(List<Card> listCard)
     {
-        currentPlayer.RemoveCard(listCard);
+        currentPlayer.RemoveCards(listCard);
     }
-
 }

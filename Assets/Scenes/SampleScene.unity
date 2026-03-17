@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -226,38 +226,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
   m_PrefabInstance: {fileID: 254989944}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &420706923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 420706924}
-  m_Layer: 0
-  m_Name: Players
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &420706924
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420706923}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 642.4072, y: 146.66713, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 867598148}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -683,50 +651,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774276781}
   m_CullTransparentMesh: 1
---- !u!1 &867598147
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 867598148}
-  - component: {fileID: 867598149}
-  m_Layer: 0
-  m_Name: Player1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &867598148
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867598147}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 420706924}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &867598149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867598147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e910dbfd1d8c9a9429d0a202979aa540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &1053543744
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,9 +695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf9f74d4e186414291fbcc304a7a951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  currentPlayer: {fileID: 867598149}
-  players:
-  - {fileID: 867598149}
 --- !u!1 &1179293188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1351,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6edf45616a65945a88d7ba50ca1aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  playerCount: 2
+  cardTypeSlots:
+  - cardType: {fileID: 11400000, guid: cae118dd371b3e841bcce2038da3862d, type: 2}
+    quantity: 6
+  - cardType: {fileID: 11400000, guid: 00332ed58e44fa84bb66e19501cae9d9, type: 2}
+    quantity: 6
+  - cardType: {fileID: 11400000, guid: 9ca7d1732f6b95b4998d5ea02da5c35b, type: 2}
+    quantity: 6
 --- !u!1 &2081232935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,10 +1404,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardUIManager
   deck:
-  - {fileID: 1986655737}
-  - {fileID: 1916542217}
   - {fileID: 1654933077}
+  - {fileID: 1916542217}
   - {fileID: 669249569}
+  - {fileID: 1986655737}
   - {fileID: 1563632382}
   CardTypeDatas:
   - {fileID: 11400000, guid: cae118dd371b3e841bcce2038da3862d, type: 2}
@@ -1602,7 +1531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1633,4 +1562,3 @@ SceneRoots:
   - {fileID: 1523403873}
   - {fileID: 655325481}
   - {fileID: 1669408726}
-  - {fileID: 420706924}

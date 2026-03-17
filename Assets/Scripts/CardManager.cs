@@ -24,7 +24,7 @@ public class CardManager : MonoBehaviour
         selectedCards.Remove(card);
     }
 
-    public void ConfirmCardSelected()
+    public void ConfirmSelectedCard()
     {
         StackManager.instance.UpdateStack(selectedCards);
         PlayerManager.instance.RemoveCards(selectedCards);

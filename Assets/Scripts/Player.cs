@@ -1,16 +1,23 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
-    public List<Card> cards = new();
+    public List<Card> cards;
 
-    public void NewTurn()
-    {
-        CardUIManager.instance.LoadPlayerDeck(cards);
+    public Player() {
+        cards = new();
     }
 
-    public void RemoveCard(List<Card> listCard)
+    public Player(List<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void AddCard(Card card)
+    {
+        cards.Add(card);
+    }
+
+    public void RemoveCards(List<Card> listCard)
     {
         foreach (Card card in listCard)
         {

@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class CardUI : MonoBehaviour
 {
-    public Card card;
     public Image imageUI;
     public Sprite backSprite;
+    public Card card;
     public bool isSelected = false;
 
     public void Show()
@@ -17,6 +17,7 @@ public class CardUI : MonoBehaviour
     {
         imageUI.sprite = backSprite;
     }
+    
     public void Toggle()
     {
         if (!isSelected)
