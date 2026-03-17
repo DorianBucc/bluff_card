@@ -4,42 +4,49 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    private int indexPlayer = 0;
-    private int CountPlayer;
+    private int playerIndex = 0;
     public Player currentPlayer;
     public List<Player> listPlayers = new();
 
     public void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
     }
 
-    void Start()
+    public void Start()
     {
         // CountPlayer = listPlayers.Count;
     }
-    public void nextGameTurn()// Tour suivant
+
+    public int GetPlayerCount()
+    {
+        return listPlayers.Count;
+    }
+
+    public void NextGameTurn() // Tour suivant
     {   
-        indexPlayer++;
-        indexPlayer = indexPlayer%CountPlayer;
-        currentPlayer = listPlayers[indexPlayer];
-        currentPlayer.newTurn();
+        playerIndex++;
+        playerIndex %= GetPlayerCount();
+
+        currentPlayer = listPlayers[playerIndex];
+        currentPlayer.NewTurn();
+        
         // prend le prochain joueur
         // joueur.startRound()
     }
-    public void nextRound() // Nouvelle ou prochaine manche
+    public void NextRound() // Manche suivante
     {
         
     }
-    public void removePreviousPlayer()
+    public void RemovePreviousPlayer()
     {
         
     }
 
-    public void removeCards(List<CardTypeData> listCard)
+    public void RemoveCards(List<CardTypeData> listCard)
     {
         currentPlayer.RemoveCard(listCard);
     }

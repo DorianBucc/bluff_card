@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     public List<CardTypeData> cards = new();
 
-    public void newTurn()
+    public void NewTurn()
     {
         
     } // Envoyer les cartes cardUIManager singleton
