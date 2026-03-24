@@ -17,11 +17,19 @@ public class AIManager : MonoBehaviour
     {
         List<Card> playerCards = player.cards;
 
-        int randomIndex = Random.Range(0, playerCards.Count);
+        int playerCardCount = playerCards.Count;
+
+        if (playerCardCount <= 1)
+        {   
+            GameManager.instance.CallLiar();
+            return;
+        }
+
+        int randomIndex = Random.Range(0, playerCardCount);
 
         Card randomCard = playerCards[randomIndex];
 
-        print("IA card: " + randomCard.typeData.cardName);
+        print("IA card: " + randomCard.data.cardName);
 
         CardManager cardManager = CardManager.instance;
 

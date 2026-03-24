@@ -2341,7 +2341,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2047893884}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: callLiar
+        m_MethodName: CallLiar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2434,12 +2434,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerCount: 2
-  cardTypeSlots:
-  - cardType: {fileID: 11400000, guid: cae118dd371b3e841bcce2038da3862d, type: 2}
+  cardStacks:
+  - data: {fileID: 11400000, guid: cae118dd371b3e841bcce2038da3862d, type: 2}
     quantity: 6
-  - cardType: {fileID: 11400000, guid: 00332ed58e44fa84bb66e19501cae9d9, type: 2}
+  - data: {fileID: 11400000, guid: 00332ed58e44fa84bb66e19501cae9d9, type: 2}
     quantity: 6
-  - cardType: {fileID: 11400000, guid: 9ca7d1732f6b95b4998d5ea02da5c35b, type: 2}
+  - data: {fileID: 11400000, guid: 9ca7d1732f6b95b4998d5ea02da5c35b, type: 2}
     quantity: 6
   TextSymbolCardRound: {fileID: 154066778}
   TextDebug: {fileID: 1213003941}

@@ -10,7 +10,7 @@ public class CardUI : MonoBehaviour
 
     public void Show()
     {
-        imageUI.sprite = card.typeData.sprite;
+        imageUI.sprite = card.data.sprite;
     }
 
     public void Hide()

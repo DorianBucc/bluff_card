@@ -1,4 +1,4 @@
-public enum ECardType
+public enum CardType
 {
     Jack,
     Queen,

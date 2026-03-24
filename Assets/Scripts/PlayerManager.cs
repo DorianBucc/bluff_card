@@ -35,6 +35,15 @@ public class PlayerManager : MonoBehaviour
         return players.Count;
     }
 
+    public Player GetPreviousPlayer()
+    {
+        int playerCount = GetPlayerCount();
+
+        int previousPlayerIndex = (playerIndex - 1 + playerCount) % playerCount;
+
+        return players[previousPlayerIndex];
+    }
+
     public void DealCards(List<Card> cards, int cardsPerPlayer)
     {
         int cardIndex = 0;
@@ -52,25 +61,25 @@ public class PlayerManager : MonoBehaviour
 
     public void NextPlayer()
     {   
+        Player nextPlayer = SwitchToNextPlayer();
+
+        if (nextPlayer.isAI)
+        {
+            AIManager.instance.PlayRandom(nextPlayer);
+        } 
+        else
+        {
+            CardUIManager.instance.DisplayDeck(nextPlayer.cards);
+        }
+    }
+
+    private Player SwitchToNextPlayer()
+    {
         playerIndex = (playerIndex + 1) % GetPlayerCount();
 
         currentPlayer = players[playerIndex];
 
-        if (currentPlayer.isAI)
-        {
-            print("IA playing");
-            AIManager.instance.PlayRandom(currentPlayer);
-        } 
-        else
-        {
-            print("Player playing");
-            CardUIManager.instance.DisplayDeck(currentPlayer.cards);
-        }
-    }
-
-    public void RemovePreviousPlayer()
-    {
-        
+        return currentPlayer;
     }
 
     public void RemoveCards(List<Card> listCard)

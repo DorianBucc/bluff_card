@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int playerCount = 2;
-    public List<CardTypeSlot> cardTypeSlots;
-    private CardTypeData SymbolCardRound;
+    public List<CardStack> cardStacks;
+    private CardData SymbolCardRound;
     public TextMeshProUGUI TextSymbolCardRound;
     public TextMeshProUGUI TextDebug;
 
@@ -21,19 +21,12 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        // TEMP
+        // TEMPORARY
         List<Player> players = new()
         {
-            new(new List<Card>(), false),
-            new(new List<Card>(), true)
+            new(false, "Player", new List<Card>()),
+            new(true, "IA", new List<Card>())
         };
-
-        // for (int i = 0; i < playerCount; i++)
-        // {
-        //     Player player = new();
-
-        //     players.Add(player);
-        // }
 
         List<Card> cards = InitializeCards();
 
@@ -42,6 +35,8 @@ public class GameManager : MonoBehaviour
         playerManager.InitializePlayers(players);
 
         playerManager.DealCards(cards, 5);
+
+        InitializeSymbolCardRound();
 
         CardUIManager.instance.DisplayDeck(playerManager.currentPlayer.cards);
     }
@@ -52,11 +47,11 @@ public class GameManager : MonoBehaviour
 
         int id = 1;
 
-        foreach (var cardTypeSlot in cardTypeSlots)
+        foreach (CardStack cardStack in cardStacks)
         {
-            for (int i = 0; i < cardTypeSlot.quantity; i++)
+            for (int i = 0; i < cardStack.quantity; i++)
             {
-                Card card = new(id, cardTypeSlot.cardType);
+                Card card = new(id, cardStack.data);
 
                 cards.Add(card);
 
@@ -64,13 +59,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        InitializeSymbolCardRound();
         return ShuffleCards(cards);
     }
 
     public void InitializeSymbolCardRound()
     {
-        SymbolCardRound = cardTypeSlots[Random.Range(0,cardTypeSlots.Count)].cardType;
+        SymbolCardRound = cardStacks[Random.Range(0, cardStacks.Count)].data;
         TextSymbolCardRound.text = SymbolCardRound.cardName;
     }
 
@@ -94,21 +88,24 @@ public class GameManager : MonoBehaviour
         return shuffledCards;
     }
 
-    public void callLiar()
+    public void CallLiar()
     {
-        Player playerCalling = PlayerManager.instance.currentPlayer;
-        // Player playerTarget = ;
+        PlayerManager playerManager = PlayerManager.instance;
 
+        Player accuser = playerManager.currentPlayer;
+        Player accused = playerManager.GetPreviousPlayer();
 
-        if (StackManager.instance.checkValidStack(SymbolCardRound))
+        bool isHonest = StackManager.instance.CheckValidStack(SymbolCardRound);
+
+        if (isHonest)
         {
-            TextDebug.text = "Player actuel perdu";
-            // playerCalling.Dead()
+            TextDebug.text = $"{accuser.name} lost";
+            // playerCalling.Eliminate()
         }
         else
         {
-            TextDebug.text = "Player précedent perdu";
-            // playerTarget.Dead()
+            TextDebug.text = $"{accused.name} lost";
+            // playerTarget.Eliminate()
         }
 
         // Malus appeler pour le perdant à créer

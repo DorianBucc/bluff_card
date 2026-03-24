@@ -11,9 +11,10 @@ public class Player
         cards = new();
     }
 
-    public Player(List<Card> cards, bool isAI) {
-        this.cards = cards;
+    public Player(bool isAI, string name, List<Card> cards) {
         this.isAI = isAI;
+        this.name = name;
+        this.cards = cards;
     }
 
     public void AddCard(Card card)

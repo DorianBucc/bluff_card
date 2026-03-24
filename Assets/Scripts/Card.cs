@@ -4,10 +4,10 @@ using System;
 public class Card
 {
     public int id;
-    public CardTypeData typeData;
+    public CardData data;
 
-    public Card(int id, CardTypeData typeData) {
+    public Card(int id, CardData data) {
         this.id = id;
-        this.typeData = typeData;
+        this.data = data;
     }
 }
