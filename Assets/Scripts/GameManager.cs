@@ -21,14 +21,19 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        List<Player> players = new();
-
-        for (int i = 0; i < playerCount; i++)
+        // TEMP
+        List<Player> players = new()
         {
-            Player player = new();
+            new(new List<Card>(), false),
+            new(new List<Card>(), true)
+        };
 
-            players.Add(player);
-        }
+        // for (int i = 0; i < playerCount; i++)
+        // {
+        //     Player player = new();
+
+        //     players.Add(player);
+        // }
 
         List<Card> cards = InitializeCards();
 

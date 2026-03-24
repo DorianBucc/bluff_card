@@ -55,8 +55,17 @@ public class PlayerManager : MonoBehaviour
         playerIndex = (playerIndex + 1) % GetPlayerCount();
 
         currentPlayer = players[playerIndex];
-        
-        CardUIManager.instance.DisplayDeck(currentPlayer.cards);
+
+        if (currentPlayer.isAI)
+        {
+            print("IA playing");
+            AIManager.instance.PlayRandom(currentPlayer);
+        } 
+        else
+        {
+            print("Player playing");
+            CardUIManager.instance.DisplayDeck(currentPlayer.cards);
+        }
     }
 
     public void RemovePreviousPlayer()
