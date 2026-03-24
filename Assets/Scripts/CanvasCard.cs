@@ -1,19 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardUI : MonoBehaviour
+[RequireComponent(typeof(Image))]
+public class CanvasCard : MonoBehaviour
 {
-    public Image imageUI;
+    private Image imageUI;
     public Sprite backSprite;
+    [HideInInspector]
     public Card card;
-    public bool isSelected = false;
+    private bool isSelected = false;
 
-    public void Show()
+    void Start()
+    {
+        imageUI = GetComponent<Image>();
+    }
+    
+    public void Select()
     {
         imageUI.sprite = card.data.sprite;
     }
 
-    public void Hide()
+    public void Unselect()
     {
         imageUI.sprite = backSprite;
     }
@@ -22,12 +29,12 @@ public class CardUI : MonoBehaviour
     {
         if (!isSelected)
         {
-            Hide();
+            Unselect();
             CardManager.instance.AddSelectedCard(card);
         }
         else
         {
-            Show();
+            Select();
             CardManager.instance.RemoveSelectedCard(card);
         }
         

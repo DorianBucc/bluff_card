@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         playerIndex = 0;
 
         currentPlayer = this.players[0];
+        CanvasManager.instance.UpdatePlayerName(currentPlayer.name);
     }
 
     public int GetPlayerCount()
@@ -61,25 +62,51 @@ public class PlayerManager : MonoBehaviour
 
     public void NextPlayer()
     {   
-        Player nextPlayer = SwitchToNextPlayer();
+        SwitchToNextPlayer();
 
-        if (nextPlayer.isAI)
+        if (currentPlayer.isAI)
         {
-            AIManager.instance.PlayRandom(nextPlayer);
+            PlayRandom(currentPlayer);
         } 
         else
         {
-            CardUIManager.instance.DisplayDeck(nextPlayer.cards);
+            CanvasManager.instance.DisplayHand(currentPlayer.cards);
         }
+        
+        CanvasManager.instance.UpdatePlayerName(currentPlayer.name);
     }
 
-    private Player SwitchToNextPlayer()
+    private void SwitchToNextPlayer()
     {
         playerIndex = (playerIndex + 1) % GetPlayerCount();
 
         currentPlayer = players[playerIndex];
+    }
 
-        return currentPlayer;
+    private void PlayRandom(Player player)
+    {
+        List<Card> playerCards = player.cards;
+
+        int playerCardCount = playerCards.Count;
+
+        if (playerCardCount <= 1)
+        {   
+            GameManager.instance.CallBluff();
+            return;
+        }
+
+        int randomIndex = Random.Range(0, playerCardCount);
+
+        Card randomCard = playerCards[randomIndex];
+
+        print("IA card: " + randomCard.data.cardName);
+
+        CardManager cardManager = CardManager.instance;
+
+        cardManager.AddSelectedCard(randomCard);
+        cardManager.ConfirmSelectedCard();
+
+        PlayerManager.instance.NextPlayer();
     }
 
     public void RemoveCards(List<Card> listCard)

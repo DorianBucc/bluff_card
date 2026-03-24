@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class CardStack
+public class StackOfCardType
 {
     public CardData data;
     public int quantity;

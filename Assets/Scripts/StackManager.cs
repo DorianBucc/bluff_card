@@ -19,11 +19,11 @@ public class StackManager : MonoBehaviour
         stack = new List<Card>(cards);
     }
 
-    public bool CheckValidStack(CardData symbolCardRound)
+    public bool CheckValidStack(CardData currentCardTargeted)
     {
         foreach (Card card in stack)
         {
-            if (card.data != symbolCardRound)
+            if (card.data != currentCardTargeted || card.data.cardName == "Joker")
                 return false;
         }
 

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6196493268137104366}
   - component: {fileID: 4167312539324192380}
   - component: {fileID: 8197713794432826038}
-  - component: {fileID: 3179305843372919512}
-  - component: {fileID: 3607350249242104909}
+  - component: {fileID: 3333185412458016603}
+  - component: {fileID: 1322746399154143304}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3179305843372919512
+--- !u!114 &3333185412458016603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,14 +86,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2842719528732765430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aac682cf4532694484bbd17e3163092, type: 3}
+  m_Script: {fileID: 11500000, guid: 601f6348d0e2bc4489db7097fe47d9a0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardTypeData: {fileID: 11400000, guid: 9ca7d1732f6b95b4998d5ea02da5c35b, type: 2}
-  imageUI: {fileID: 8197713794432826038}
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasCard
   backSprite: {fileID: 21300000, guid: 4624e9818e330134fb3adf37ecbbd9d7, type: 3}
-  isSelected: 0
---- !u!114 &3607350249242104909
+  card:
+    id: 0
+    data: {fileID: 0}
+--- !u!114 &1322746399154143304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,8 +137,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3179305843372919512}
-        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+      - m_Target: {fileID: 3333185412458016603}
+        m_TargetAssemblyTypeName: CanvasCard, Assembly-CSharp
         m_MethodName: Toggle
         m_Mode: 1
         m_Arguments:

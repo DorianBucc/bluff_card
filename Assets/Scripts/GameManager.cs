@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int playerCount = 2;
-    public List<CardStack> cardStacks;
-    private CardData SymbolCardRound;
-    public TextMeshProUGUI TextSymbolCardRound;
-    public TextMeshProUGUI TextDebug;
+    public List<StackOfCardType> cardStacks;
+    public List<CardData> targetedCards;
+    private CardData currentTargetedCard;
+    public Image ImageTargetedCard;
+    public TextMeshProUGUI TextDebug;    
 
     public void Awake()
     {
@@ -25,7 +28,7 @@ public class GameManager : MonoBehaviour
         List<Player> players = new()
         {
             new(false, "Player", new List<Card>()),
-            new(true, "IA", new List<Card>())
+            new(false, "Player2", new List<Card>())
         };
 
         List<Card> cards = InitializeCards();
@@ -36,9 +39,9 @@ public class GameManager : MonoBehaviour
 
         playerManager.DealCards(cards, 5);
 
-        InitializeSymbolCardRound();
+        InitializeTargetedCard();
 
-        CardUIManager.instance.DisplayDeck(playerManager.currentPlayer.cards);
+        CanvasManager.instance.DisplayHand(playerManager.currentPlayer.cards);
     }
 
     private List<Card> InitializeCards()
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         int id = 1;
 
-        foreach (CardStack cardStack in cardStacks)
+        foreach (StackOfCardType cardStack in cardStacks)
         {
             for (int i = 0; i < cardStack.quantity; i++)
             {
@@ -62,16 +65,21 @@ public class GameManager : MonoBehaviour
         return ShuffleCards(cards);
     }
 
-    public void InitializeSymbolCardRound()
+    public void InitializeTargetedCard()
     {
-        SymbolCardRound = cardStacks[Random.Range(0, cardStacks.Count)].data;
-        TextSymbolCardRound.text = SymbolCardRound.cardName;
+        currentTargetedCard = targetedCards[Random.Range(0, targetedCards.Count)];
+        ImageTargetedCard.sprite = currentTargetedCard.sprite;
     }
 
     public void NextTurn()
     {
         CardManager.instance.ConfirmSelectedCard();
         PlayerManager.instance.NextPlayer();
+    }
+
+    public void NextRound()
+    {
+       // TODO
     }
 
     private List<Card> ShuffleCards(List<Card> cardsToShuffle)
@@ -88,14 +96,14 @@ public class GameManager : MonoBehaviour
         return shuffledCards;
     }
 
-    public void CallLiar()
+    public void CallBluff()
     {
         PlayerManager playerManager = PlayerManager.instance;
 
         Player accuser = playerManager.currentPlayer;
         Player accused = playerManager.GetPreviousPlayer();
 
-        bool isHonest = StackManager.instance.CheckValidStack(SymbolCardRound);
+        bool isHonest = StackManager.instance.CheckValidStack(currentTargetedCard);
 
         if (isHonest)
         {

@@ -28,5 +28,7 @@ public class CardManager : MonoBehaviour
     {
         StackManager.instance.UpdateStack(selectedCards);
         PlayerManager.instance.RemoveCards(selectedCards);
+        CanvasManager.instance.HideHand();
+        selectedCards.Clear();
     }
 }
