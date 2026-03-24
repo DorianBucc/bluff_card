@@ -18,4 +18,14 @@ public class StackManager : MonoBehaviour
     {
         stack = new List<Card>(cards);
     }
+
+    public bool checkValidStack(CardTypeData symbolCardRound)
+    {
+        foreach (var card in stack)
+        {
+            if(card.typeData.cardName != symbolCardRound.cardName)
+                return false;
+        }
+        return true;
+    }
 }

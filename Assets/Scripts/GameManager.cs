@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,6 +7,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int playerCount = 2;
     public List<CardTypeSlot> cardTypeSlots;
+    private CardTypeData SymbolCardRound;
+    public TextMeshProUGUI TextSymbolCardRound;
+    public TextMeshProUGUI TextDebug;
 
     public void Awake()
     {
@@ -55,7 +59,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        InitializeSymbolCardRound();
         return ShuffleCards(cards);
+    }
+
+    public void InitializeSymbolCardRound()
+    {
+        SymbolCardRound = cardTypeSlots[Random.Range(0,cardTypeSlots.Count)].cardType;
+        TextSymbolCardRound.text = SymbolCardRound.cardName;
     }
 
     public void NextTurn()
@@ -76,5 +87,25 @@ public class GameManager : MonoBehaviour
         }
 
         return shuffledCards;
+    }
+
+    public void callLiar()
+    {
+        Player playerCalling = PlayerManager.instance.currentPlayer;
+        // Player playerTarget = ;
+
+
+        if (StackManager.instance.checkValidStack(SymbolCardRound))
+        {
+            TextDebug.text = "Player actuel perdu";
+            // playerCalling.Dead()
+        }
+        else
+        {
+            TextDebug.text = "Player précedent perdu";
+            // playerTarget.Dead()
+        }
+
+        // Malus appeler pour le perdant à créer
     }
 }
