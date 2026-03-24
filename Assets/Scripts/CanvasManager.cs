@@ -26,7 +26,7 @@ public class CanvasManager : MonoBehaviour
 
             canvasCard.card = card;
 
-            canvasCard.Select();
+            canvasCard.Show();
             canvasCard.gameObject.SetActive(true);
             
             index++;

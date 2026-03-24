@@ -15,12 +15,12 @@ public class CanvasCard : MonoBehaviour
         imageUI = GetComponent<Image>();
     }
     
-    public void Select()
+    public void Show()
     {
         imageUI.sprite = card.data.sprite;
     }
 
-    public void Unselect()
+    public void Hide()
     {
         imageUI.sprite = backSprite;
     }
@@ -29,12 +29,12 @@ public class CanvasCard : MonoBehaviour
     {
         if (!isSelected)
         {
-            Unselect();
+            Show();
             CardManager.instance.AddSelectedCard(card);
         }
         else
         {
-            Select();
+            Hide();
             CardManager.instance.RemoveSelectedCard(card);
         }
         
