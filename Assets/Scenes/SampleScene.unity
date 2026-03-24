@@ -739,6 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faaea5491483b5545a199e8dba24d3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StackManager
+  stack: []
 --- !u!1 &1419704201
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebda9a772ae84346a443797c8abfc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardManager
+  selectedCards: []
 --- !u!1 &1523403869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1086,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2047893884}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: NextGameTurn
+        m_MethodName: NextTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1409,10 +1411,6 @@ MonoBehaviour:
   - {fileID: 669249569}
   - {fileID: 1986655737}
   - {fileID: 1563632382}
-  CardTypeDatas:
-  - {fileID: 11400000, guid: cae118dd371b3e841bcce2038da3862d, type: 2}
-  - {fileID: 11400000, guid: 9ca7d1732f6b95b4998d5ea02da5c35b, type: 2}
-  - {fileID: 11400000, guid: 00332ed58e44fa84bb66e19501cae9d9, type: 2}
 --- !u!1 &2108103136
 GameObject:
   m_ObjectHideFlags: 0

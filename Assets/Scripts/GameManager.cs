@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     public void NextTurn()
     {
         CardManager.instance.ConfirmSelectedCard();
+        PlayerManager.instance.NextPlayer();
     }
 
     private List<Card> ShuffleCards(List<Card> cardsToShuffle)

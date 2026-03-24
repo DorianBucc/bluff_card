@@ -16,6 +16,8 @@ public class CardUIManager : MonoBehaviour
 
     public void DisplayDeck(List<Card> cards)
     {
+        // TODO: logique pour afficher correctement les cartes dans le deck
+
         int index = 0;
 
         foreach (Card card in cards)  
@@ -23,6 +25,7 @@ public class CardUIManager : MonoBehaviour
             CardUI cardUI = deck[index];
 
             cardUI.card = card;
+
             cardUI.Show();
             
             index++;
