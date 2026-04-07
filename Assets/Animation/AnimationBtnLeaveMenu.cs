@@ -4,10 +4,16 @@ public class AnimationBtnLeaveMenu : MonoBehaviour
 {
     public GameObject textGameObject;
     private Animator animatorBtn;
+    public AnimationBtnSettingsMenu otherButtonSetting;
 
     void Start()
     {
         animatorBtn = GetComponent<Animator>();
+    }
+
+    public void ActivateOtherBtnSettings()
+    {
+        otherButtonSetting.ActivedAnimatedSet();
     }
     public void ActivedAnimated()
     {
