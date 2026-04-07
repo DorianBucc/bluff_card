@@ -23,11 +23,10 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        // TEMPORARY
         List<Player> players = new()
         {
-            new(false, "Player", new List<Card>()),
-            new(false, "Player2", new List<Card>())
+            new("Player", new List<Card>()),
+            new("Player2", new List<Card>())
         };
 
         List<Card> cards = InitializeCards();

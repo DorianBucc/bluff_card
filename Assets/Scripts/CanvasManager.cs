@@ -25,11 +25,19 @@ public class CanvasManager : MonoBehaviour
             CanvasCard canvasCard = canvasHand[index];
 
             canvasCard.card = card;
-
+            canvasCard.isInteractable = true;
             canvasCard.Show();
             canvasCard.gameObject.SetActive(true);
             
             index++;
+        }
+    }
+
+    public void HideHand()
+    {
+        foreach (CanvasCard canvasCard in canvasHand)  
+        {
+            canvasCard.gameObject.SetActive(false);
         }
     }
 
@@ -46,14 +54,6 @@ public class CanvasManager : MonoBehaviour
         foreach (CanvasCard canvasCard in canvasHand)
         {
             canvasCard.Shake();
-        }
-    }
-
-    public void HideHand()
-    {
-        foreach (CanvasCard canvasCard in canvasHand)  
-        {
-            canvasCard.gameObject.SetActive(false);
         }
     }
 

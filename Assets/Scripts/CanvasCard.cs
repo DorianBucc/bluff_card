@@ -9,6 +9,7 @@ public class CanvasCard : MonoBehaviour
     public Sprite backSprite;
     [HideInInspector]
     public Card card;
+    public bool isInteractable = false;
     private bool isSelected = false;
     private readonly float moveAmount = 25f;
     private readonly float duration = 0.2f;
@@ -20,6 +21,8 @@ public class CanvasCard : MonoBehaviour
 
     public void Toggle()
     {
+        if (!isInteractable) return;
+
         if (isSelected)
         {
             Unselect();
@@ -46,12 +49,6 @@ public class CanvasCard : MonoBehaviour
     {
         MoveCard(false);
     }
-
-    public void Shake()
-    {
-        transform.DOKill(true);
-        transform.DOShakePosition(0.2f, 10f, 20);
-    }
     
     public void Show()
     {
@@ -63,9 +60,15 @@ public class CanvasCard : MonoBehaviour
         imageUI.sprite = backSprite;
     }
 
+    public void Shake()
+    {
+        transform.DOKill(true);
+        transform.DOShakePosition(0.2f, 10f, 20);
+    }
+
     private void MoveCard(bool shouldSelect)
     {
-        if (isSelected == shouldSelect) return;
+        if (isSelected == shouldSelect || !isInteractable) return;
 
         isSelected = shouldSelect;
         

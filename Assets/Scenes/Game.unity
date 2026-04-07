@@ -397,6 +397,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 8197713794432826038, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3179305843372919512, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
     - {fileID: 3607350249242104909, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
@@ -503,6 +507,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197713794432826038, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -1359,6 +1367,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 8197713794432826038, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3179305843372919512, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
     - {fileID: 3607350249242104909, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
@@ -1466,6 +1478,10 @@ PrefabInstance:
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197713794432826038, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3179305843372919512, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
@@ -2744,6 +2760,10 @@ PrefabInstance:
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197713794432826038, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3179305843372919512, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}

@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         playerIndex = 0;
 
         currentPlayer = this.players[0];
+
         CanvasManager.instance.UpdatePlayerName(currentPlayer.name);
     }
 
@@ -39,7 +40,6 @@ public class PlayerManager : MonoBehaviour
     public Player GetPreviousPlayer()
     {
         int playerCount = GetPlayerCount();
-
         int previousPlayerIndex = (playerIndex - 1 + playerCount) % playerCount;
 
         return players[previousPlayerIndex];
@@ -64,16 +64,10 @@ public class PlayerManager : MonoBehaviour
     {   
         SwitchToNextPlayer();
 
-        if (currentPlayer.isAI)
-        {
-            PlayRandom(currentPlayer);
-        } 
-        else
-        {
-            CanvasManager.instance.DisplayHand(currentPlayer.cards);
-        }
-        
-        CanvasManager.instance.UpdatePlayerName(currentPlayer.name);
+        CanvasManager canvasManager = CanvasManager.instance;
+
+        canvasManager.DisplayHand(currentPlayer.cards);
+        canvasManager.UpdatePlayerName(currentPlayer.name);
     }
 
     private void SwitchToNextPlayer()
@@ -83,34 +77,30 @@ public class PlayerManager : MonoBehaviour
         currentPlayer = players[playerIndex];
     }
 
-    private void PlayRandom(Player player)
-    {
-        List<Card> playerCards = player.cards;
-
-        int playerCardCount = playerCards.Count;
-
-        if (playerCardCount <= 1)
-        {   
-            GameManager.instance.CallBluff();
-            return;
-        }
-
-        int randomIndex = Random.Range(0, playerCardCount);
-
-        Card randomCard = playerCards[randomIndex];
-
-        print("IA card: " + randomCard.data.cardName);
-
-        CardManager cardManager = CardManager.instance;
-
-        cardManager.AddSelectedCard(randomCard);
-        cardManager.ConfirmSelectedCard();
-
-        PlayerManager.instance.NextPlayer();
-    }
-
     public void RemoveCards(List<Card> listCard)
     {
         currentPlayer.RemoveCards(listCard);
     }
+
+    // private void PlayRandom(Player player)
+    // {
+    //     List<Card> playerCards = player.cards;
+
+    //     int playerCardCount = playerCards.Count;
+
+    //     if (playerCardCount <= 1)
+    //     {   
+    //         GameManager.instance.CallBluff();
+    //         return;
+    //     }
+
+    //     int randomIndex = Random.Range(0, playerCardCount);
+
+    //     Card randomCard = playerCards[randomIndex];
+
+    //     CardManager cardManager = CardManager.instance;
+
+    //     cardManager.AddSelectedCard(randomCard);
+    //     cardManager.ConfirmSelectedCard();
+    // }
 }
