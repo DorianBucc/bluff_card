@@ -2649,10 +2649,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanvasManager
   canvasHand:
-  - {fileID: 1654933084}
-  - {fileID: 1916542224}
   - {fileID: 750624541}
+  - {fileID: 1916542224}
   - {fileID: 1986655744}
+  - {fileID: 1654933084}
   - {fileID: 587949845}
   TextPlayerName: {fileID: 1125009859}
 --- !u!1 &2108103136
