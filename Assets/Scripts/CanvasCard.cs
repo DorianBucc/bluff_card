@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +10,22 @@ public class CanvasCard : MonoBehaviour
     [HideInInspector]
     public Card card;
     private bool isSelected = false;
+    private readonly float moveAmount = 25f;
+    private readonly float duration = 0.2f;
 
     void Start()
     {
         imageUI = GetComponent<Image>();
+    }
+
+    public void Select()
+    {
+        MoveCard(true);
+    }
+
+    public void Unselect()
+    {
+        MoveCard(false);
     }
     
     public void Show()
@@ -29,15 +42,28 @@ public class CanvasCard : MonoBehaviour
     {
         if (!isSelected)
         {
-            Show();
+            Select();
             CardManager.instance.AddSelectedCard(card);
         }
         else
         {
-            Hide();
+            Unselect();
             CardManager.instance.RemoveSelectedCard(card);
         }
+    }
+
+    private void MoveCard(bool shouldSelect)
+    {
+        if (isSelected == shouldSelect) return;
+
+        isSelected = shouldSelect;
         
-        isSelected = !isSelected;
+        transform.DOKill(true);
+
+        float direction = shouldSelect ? 1f : -1f;
+
+        Vector3 movement = transform.up * (moveAmount * direction);
+
+        transform.DOLocalMove(movement, duration).SetRelative(true).SetEase(Ease.OutCubic);
     }
 }
