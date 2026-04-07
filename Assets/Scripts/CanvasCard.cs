@@ -39,7 +39,5 @@ public class CanvasCard : MonoBehaviour
         }
         
         isSelected = !isSelected;
-
-        print(isSelected);
     }
 }
