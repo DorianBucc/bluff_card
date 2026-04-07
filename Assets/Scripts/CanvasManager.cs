@@ -41,6 +41,14 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    public void ShakeHand()
+    {
+        foreach (CanvasCard canvasCard in canvasHand)
+        {
+            canvasCard.Shake();
+        }
+    }
+
     public void HideHand()
     {
         foreach (CanvasCard canvasCard in canvasHand)  
