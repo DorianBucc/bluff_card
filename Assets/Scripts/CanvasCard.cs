@@ -18,6 +18,25 @@ public class CanvasCard : MonoBehaviour
         imageUI = GetComponent<Image>();
     }
 
+    public void Toggle()
+    {
+        if (isSelected)
+        {
+            Unselect();
+            CardManager.instance.RemoveSelectedCard(card);
+            return;
+        }
+
+        if (!CardManager.instance.CanSelectMore())
+        {   
+            Shake();
+            return;
+        }
+
+        Select();
+        CardManager.instance.AddSelectedCard(card);
+    }
+
     public void Select()
     {
         MoveCard(true);
@@ -26,6 +45,12 @@ public class CanvasCard : MonoBehaviour
     public void Unselect()
     {
         MoveCard(false);
+    }
+
+    public void Shake()
+    {
+        transform.DOKill(true);
+        transform.DOShakePosition(0.2f, 10f, 20);
     }
     
     public void Show()
@@ -37,29 +62,16 @@ public class CanvasCard : MonoBehaviour
     {
         imageUI.sprite = backSprite;
     }
-    
-    public void Toggle()
-    {
-        if (!isSelected)
-        {
-            Select();
-            CardManager.instance.AddSelectedCard(card);
-        }
-        else
-        {
-            Unselect();
-            CardManager.instance.RemoveSelectedCard(card);
-        }
-        
-        isSelected = !isSelected;
-    }
 
-    private void MoveCard(bool startingSelection)
+    private void MoveCard(bool shouldSelect)
     {
+        if (isSelected == shouldSelect) return;
+
+        isSelected = shouldSelect;
+        
         transform.DOKill(true);
 
-        float direction = startingSelection ? 1f : -1f;
-
+        float direction = shouldSelect ? 1f : -1f;
         Vector3 movement = transform.up * (moveAmount * direction);
 
         transform.DOLocalMove(movement, duration).SetRelative(true).SetEase(Ease.OutCubic);

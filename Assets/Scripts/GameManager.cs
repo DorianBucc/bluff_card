@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -62,7 +61,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        return ShuffleCards(cards);
+        cards.Shuffle(); 
+
+        return cards;
     }
 
     public void InitializeTargetedCard()
@@ -73,27 +74,22 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
-        CardManager.instance.ConfirmSelectedCard();
+        CardManager cardManager = CardManager.instance;
+
+        if (cardManager.selectedCards.Count <= 0)
+        {
+            CanvasManager.instance.ShakeHand();
+            return;
+        }
+
+        cardManager.ConfirmSelectedCard();
+
         PlayerManager.instance.NextPlayer();
     }
 
     public void NextRound()
     {
        // TODO
-    }
-
-    private List<Card> ShuffleCards(List<Card> cardsToShuffle)
-    {
-        List<Card> shuffledCards = new(cardsToShuffle);
-
-        for (int i = shuffledCards.Count - 1; i >= 0 ; i--)
-        {
-            int randomIndex = Random.Range(0, i + 1);
-
-            (shuffledCards[randomIndex], shuffledCards[i]) = (shuffledCards[i], shuffledCards[randomIndex]);
-        }
-
-        return shuffledCards;
     }
 
     public void CallBluff()

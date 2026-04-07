@@ -5,6 +5,7 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager instance;
     public List<Card> selectedCards = new();
+    public int maxSelectableCards = 3;
 
     public void Awake()
     {
@@ -14,21 +15,37 @@ public class CardManager : MonoBehaviour
         } 
     }
 
+    public bool CanSelectMore()
+    {
+        return selectedCards.Count < maxSelectableCards;
+    }
+
     public void AddSelectedCard(Card card)
     {
-        selectedCards.Add(card);
+        if (!selectedCards.Contains(card))
+        {
+            selectedCards.Add(card);
+        }
     }
 
     public void RemoveSelectedCard(Card card)
     {
-        selectedCards.Remove(card);
+        if (selectedCards.Contains(card))
+        {
+            selectedCards.Remove(card);
+        }
     }
 
     public void ConfirmSelectedCard()
     {
+        CanvasManager canvasManager = CanvasManager.instance;
+
         StackManager.instance.UpdateStack(selectedCards);
         PlayerManager.instance.RemoveCards(selectedCards);
-        CanvasManager.instance.HideHand();
+
+        canvasManager.UnselectHand();
+        canvasManager.HideHand();
+
         selectedCards.Clear();
     }
 }
