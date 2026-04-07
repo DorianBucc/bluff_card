@@ -50,15 +50,17 @@ public class CanvasCard : MonoBehaviour
             Unselect();
             CardManager.instance.RemoveSelectedCard(card);
         }
-        
-        isSelected = !isSelected;
     }
 
-    private void MoveCard(bool startingSelection)
+    private void MoveCard(bool shouldSelect)
     {
+        if (isSelected == shouldSelect) return;
+
+        isSelected = shouldSelect;
+        
         transform.DOKill(true);
 
-        float direction = startingSelection ? 1f : -1f;
+        float direction = shouldSelect ? 1f : -1f;
 
         Vector3 movement = transform.up * (moveAmount * direction);
 

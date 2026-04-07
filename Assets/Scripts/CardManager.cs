@@ -26,9 +26,14 @@ public class CardManager : MonoBehaviour
 
     public void ConfirmSelectedCard()
     {
+        CanvasManager canvasManager = CanvasManager.instance;
+
         StackManager.instance.UpdateStack(selectedCards);
         PlayerManager.instance.RemoveCards(selectedCards);
-        CanvasManager.instance.HideHand();
+
+        canvasManager.UnselectHand();
+        canvasManager.HideHand();
+        
         selectedCards.Clear();
     }
 }
