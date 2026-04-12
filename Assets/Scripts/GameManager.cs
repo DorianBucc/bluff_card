@@ -7,8 +7,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int playerCount = 2;
+    public int playerCount = 3;
     public int cardsPerPlayer = 5;
+    public int currentRound = 0;
+    public int currentTurnInRound = 0;
+    public bool isGameOver = false;
     public List<StackOfCardType> cardStacks;
     public List<CardData> targetedCards;
     private CardData currentTargetedCard;
@@ -30,6 +33,10 @@ public class GameManager : MonoBehaviour
 
     private void InitializeGame()
     {
+        currentRound = 0;
+        currentTurnInRound = 0;
+        isGameOver = false;
+
         PlayerManager.instance.InitializePlayers(playerCount);
 
         SetupRound();
@@ -38,16 +45,22 @@ public class GameManager : MonoBehaviour
     private void SetupRound()
     {
         PlayerManager playerManager = PlayerManager.instance;
+        CanvasManager canvasManager = CanvasManager.instance;
+
+        currentRound++;
+        currentTurnInRound = 1;
+
         List<Card> cards = InitializeCards();
 
-        playerManager.ClearPlayersHands();
         StackManager.instance.ClearStack();
 
-        playerManager.DealCards(cards, cardsPerPlayer);
+        playerManager.ClearPlayersHands();
+        playerManager.DealPlayersCards(cards, cardsPerPlayer);
+
+        canvasManager.UpdatePlayerName(playerManager.currentPlayer.name);
+        canvasManager.DisplayHand(playerManager.currentPlayer.cards);
 
         InitializeTargetedCard();
-
-        CanvasManager.instance.DisplayHand(playerManager.currentPlayer.cards);
     }
 
     private List<Card> InitializeCards()
@@ -81,6 +94,8 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
+        if (isGameOver) return;
+
         CardManager cardManager = CardManager.instance;
 
         if (cardManager.selectedCards.Count <= 0)
@@ -92,6 +107,8 @@ public class GameManager : MonoBehaviour
         cardManager.ConfirmSelectedCard();
 
         PlayerManager.instance.NextPlayer();
+
+        currentTurnInRound++;
     }
 
     public void NextRound()
@@ -111,24 +128,58 @@ public class GameManager : MonoBehaviour
 
     public void CallBluff()
     {
+        if (isGameOver) return;
+
+        StackManager stackManager = StackManager.instance;
+
+        // Impossible de call un bluff si aucune carte n'a encore été posée
+        if (stackManager.stack.Count == 0) return;
+
         PlayerManager playerManager = PlayerManager.instance;
 
         Player accuser = playerManager.currentPlayer;
         Player accused = playerManager.GetPreviousPlayer();
 
-        bool isHonest = StackManager.instance.CheckValidStack(currentTargetedCard);
+        bool isHonest = stackManager.CheckValidStack(currentTargetedCard);
 
         Player loser = isHonest ? accuser : accused;
-
+        
         loser.TakeDamage();
 
         if (loser.isDead)
         {
+            Player nextPlayer = playerManager.GetNextPlayer(loser);
+
+            playerManager.RemovePlayer(loser);
+
+            // En cas de victoire
+            if (playerManager.GetPlayerCount() <= 1)
+            {
+                isGameOver = true;
+
+                CanvasManager canvasManager = CanvasManager.instance;
+
+                Player winner = playerManager.GetWinner();
+
+                TextDebug.text = $"{loser.name} lost and died ! {winner.name} won !";
+
+                canvasManager.UpdatePlayerName(winner.name);
+                canvasManager.HideHand();
+                
+                return;
+            }
+
             TextDebug.text = $"{loser.name} lost and died !";
+
+            // Si le perdant meurt, le joueur suivant commence le prochain tour
+            playerManager.SetCurrentPlayer(nextPlayer);
         }
         else
         {
             TextDebug.text = $"{loser.name} lost but survived !";
+
+            // Si le perdant survit, il commence le prochain tour
+            playerManager.SetCurrentPlayer(loser);
         }
 
         NextRound();

@@ -27,32 +27,20 @@ public class PlayerManager : MonoBehaviour
 
         for (int i = 0; i < playerCount; i++)
         {
-            string playerName = i == 0 ? "Player" : $"Player {i + 1}";
+            string playerName = $"Player {i + 1}";
 
             players.Add(new Player(playerName, new List<Card>()));
         }
 
-        playerIndex = 0;
+        // Pour la première manche, le joueur qui commence est choisi aléatoirement
+        playerIndex = Random.Range(0, players.Count);
 
-        currentPlayer = players[0];
+        currentPlayer = players[playerIndex];
 
         CanvasManager.instance.UpdatePlayerName(currentPlayer.name);
     }
 
-    public int GetPlayerCount()
-    {
-        return players.Count;
-    }
-
-    public Player GetPreviousPlayer()
-    {
-        int playerCount = GetPlayerCount();
-        int previousPlayerIndex = (playerIndex - 1 + playerCount) % playerCount;
-
-        return players[previousPlayerIndex];
-    }
-
-    public void DealCards(List<Card> cards, int cardsPerPlayer)
+    public void DealPlayersCards(List<Card> cards, int cardsPerPlayer)
     {
         int cardIndex = 0;
 
@@ -65,6 +53,48 @@ public class PlayerManager : MonoBehaviour
                 cardIndex++;
             }
         }
+    }
+
+    public void RemoveCurrentPlayerCards(List<Card> cards)
+    {
+        currentPlayer.RemoveCards(cards);
+    }
+
+    public void ClearPlayersHands()
+    {
+        foreach (Player player in players)
+        {
+            player.ClearCards();
+        }
+    }
+
+    public int GetPlayerCount()
+    {
+        return players.Count;
+    }
+
+    public Player GetWinner()
+    {
+        return players.Count > 0 ? players[0] : null;
+    }
+
+    public Player GetNextPlayer(Player player)
+    {
+        int index = players.IndexOf(player);
+
+        if (index == -1) return null;
+
+        int nextPlayerIndex = (index + 1) % players.Count;
+
+        return players[nextPlayerIndex];
+    }
+
+    public Player GetPreviousPlayer()
+    {
+        int playerCount = GetPlayerCount();
+        int previousPlayerIndex = (playerIndex - 1 + playerCount) % playerCount;
+
+        return players[previousPlayerIndex];
     }
 
     public void NextPlayer()
@@ -82,24 +112,44 @@ public class PlayerManager : MonoBehaviour
         canvasManager.UpdatePlayerName(currentPlayer.name);
     }
 
-    public void RemoveCurrentPlayerCards(List<Card> cards)
+    public void RemovePlayer(Player player)
     {
-        currentPlayer.RemoveCards(cards);
+        if (players.Remove(player))
+        {
+            SyncCurrentPlayer();
+        }
     }
 
-    public void ClearPlayersHands()
+    public void SetCurrentPlayer(Player player)
     {
-        foreach (Player player in players)
+        int index = players.IndexOf(player);
+
+        if (index != -1)
         {
-            player.ClearCards();
+            playerIndex = index;
+
+            SyncCurrentPlayer();
         }
     }
 
     private void SwitchToNextPlayer()
     {
-        playerIndex = (playerIndex + 1) % GetPlayerCount();
+        playerIndex++;
 
-        currentPlayer = players[playerIndex];
+        SyncCurrentPlayer();
+    }
+
+    private void SyncCurrentPlayer()
+    {
+        if (players.Count > 0)
+        {
+            playerIndex %= players.Count;
+            currentPlayer = players[playerIndex];
+        }
+        else
+        {
+            currentPlayer = null;
+        }
     }
 
     // private void PlayRandom(Player player)

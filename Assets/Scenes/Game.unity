@@ -2649,7 +2649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6edf45616a65945a88d7ba50ca1aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  playerCount: 2
+  playerCount: 3
+  cardsPerPlayer: 5
   cardStacks:
   - data: {fileID: 11400000, guid: cae118dd371b3e841bcce2038da3862d, type: 2}
     quantity: 6
