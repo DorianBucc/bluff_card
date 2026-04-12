@@ -19,6 +19,11 @@ public class StackManager : MonoBehaviour
         stack = new List<Card>(cards);
     }
 
+    public void ClearStack()
+    {
+        stack.Clear();
+    }
+
     public bool CheckValidStack(CardData currentCardTargeted)
     {
         foreach (Card card in stack)

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -7,11 +8,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int playerCount = 2;
+    public int cardsPerPlayer = 5;
     public List<StackOfCardType> cardStacks;
     public List<CardData> targetedCards;
     private CardData currentTargetedCard;
     public Image ImageTargetedCard;
-    public TextMeshProUGUI TextDebug;    
+    public TextMeshProUGUI TextDebug;
 
     public void Awake()
     {
@@ -23,19 +25,25 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        List<Player> players = new()
-        {
-            new("Player", new List<Card>()),
-            new("Player2", new List<Card>())
-        };
+        InitializeGame();
+    }
 
+    private void InitializeGame()
+    {
+        PlayerManager.instance.InitializePlayers(playerCount);
+
+        SetupRound();
+    }
+
+    private void SetupRound()
+    {
+        PlayerManager playerManager = PlayerManager.instance;
         List<Card> cards = InitializeCards();
 
-        PlayerManager playerManager = PlayerManager.instance;
+        playerManager.ClearPlayersHands();
+        StackManager.instance.ClearStack();
 
-        playerManager.InitializePlayers(players);
-
-        playerManager.DealCards(cards, 5);
+        playerManager.DealCards(cards, cardsPerPlayer);
 
         InitializeTargetedCard();
 
@@ -88,7 +96,17 @@ public class GameManager : MonoBehaviour
 
     public void NextRound()
     {
-       // TODO
+        StartCoroutine(NextRoundRoutine());
+    }
+
+    // Temporaire
+    private IEnumerator NextRoundRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        TextDebug.text = string.Empty;
+
+        SetupRound();
     }
 
     public void CallBluff()
@@ -100,17 +118,19 @@ public class GameManager : MonoBehaviour
 
         bool isHonest = StackManager.instance.CheckValidStack(currentTargetedCard);
 
-        if (isHonest)
+        Player loser = isHonest ? accuser : accused;
+
+        loser.TakeDamage();
+
+        if (loser.isDead)
         {
-            TextDebug.text = $"{accuser.name} lost";
-            // playerCalling.Eliminate()
+            TextDebug.text = $"{loser.name} lost and died !";
         }
         else
         {
-            TextDebug.text = $"{accused.name} lost";
-            // playerTarget.Eliminate()
+            TextDebug.text = $"{loser.name} lost but survived !";
         }
 
-        // Malus appeler pour le perdant à créer
+        NextRound();
     }
 }

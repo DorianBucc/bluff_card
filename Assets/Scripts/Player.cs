@@ -6,16 +6,14 @@ public class Player
     public bool isAI;
     public string name;
     public List<Card> cards;
-    public int bulletsInChamber;
-    public int maxChambers;
+    public Revolver revolver;
     public bool isDead;
 
     public Player(string name, List<Card> cards) {
         isAI = false;
         this.name = name;
         this.cards = cards;
-        bulletsInChamber = 1;
-        maxChambers = 6;
+        revolver = new Revolver();
         isDead = false;
     }
 
@@ -32,27 +30,16 @@ public class Player
         }
     }
 
-    public bool PullTrigger()
+    public void ClearCards()
     {
-        int roll = Random.Range(1, maxChambers + 1);
-
-        if (roll <= bulletsInChamber)
-        {
-            isDead = true;
-
-            return true;
-        }
-
-        IncreaseDanger();
-
-        return false;
+        cards.Clear();
     }
 
-    private void IncreaseDanger()
+    public void TakeDamage()
     {
-        if (bulletsInChamber < maxChambers)
+        if (revolver.PullTrigger())
         {
-            bulletsInChamber++;
+            isDead = true;
         }
     }
 }
