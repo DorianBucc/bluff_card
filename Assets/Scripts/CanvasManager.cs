@@ -49,7 +49,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void cacherHand() // Regarde pas tkt
+    public void cacherHand()
     {
         foreach (CanvasCard canvasCard in canvasHand)  
         {

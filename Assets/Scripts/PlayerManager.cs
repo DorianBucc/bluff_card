@@ -97,13 +97,29 @@ public class PlayerManager : MonoBehaviour
         return players[previousPlayerIndex];
     }
 
+    public bool IsLastPlayer()
+    {
+        int playersWithCardsCount = 0;
+
+        foreach (Player p in players)
+        {
+            if (p.cards.Count > 0)
+            {
+                playersWithCardsCount++;
+            }
+        }
+
+        return playersWithCardsCount == 1;
+    }
+
     public void NextPlayer()
     {   
         SwitchToNextPlayer();
 
-        if (currentPlayer.cards.Count == 1)
+        if (IsLastPlayer())
         {
             GameManager.instance.CallBluff();
+            return;
         }
 
         CanvasManager canvasManager = CanvasManager.instance;
