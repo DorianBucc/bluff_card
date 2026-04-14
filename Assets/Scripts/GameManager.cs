@@ -58,9 +58,11 @@ public class GameManager : MonoBehaviour
         playerManager.DealPlayersCards(cards, cardsPerPlayer);
 
         canvasManager.UpdatePlayerName(playerManager.currentPlayer.name);
+        canvasManager.UpdatePlayerLife(playerManager.currentPlayer);
         canvasManager.DisplayHand(playerManager.currentPlayer.cards);
 
         InitializeTargetedCard();
+
         canvasManager.SetTargetedCardText(currentTargetedCard.cardName);
     }
 

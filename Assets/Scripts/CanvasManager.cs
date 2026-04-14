@@ -7,6 +7,7 @@ public class CanvasManager : MonoBehaviour
 {
     static public CanvasManager instance;
     public List<CanvasCard> canvasHand = new();
+    public List<GameObject> canvasBullets = new();
     public TextMeshProUGUI TextPlayerName;
     public TextMeshProUGUI TargetedCardText;
     public TextMeshProUGUI NumberOfCardsPlayedText;
@@ -68,6 +69,21 @@ public class CanvasManager : MonoBehaviour
     public void UpdatePlayerName(string name)
     {
         TextPlayerName.text = name;
+    }
+
+    public void UpdatePlayerLife(Player player)
+    {
+        int remainingChambers = player.revolver.GetRemainingChambers();
+
+        foreach (GameObject bullet in canvasBullets)
+        {
+            bullet.SetActive(false);
+        }
+
+        for (int i = 0; i < remainingChambers && i < canvasBullets.Count; i++)
+        {
+            canvasBullets[i].SetActive(true);
+        }
     }
 
     public void SetTargetedCardText(string text)

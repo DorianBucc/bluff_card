@@ -110,6 +110,7 @@ public class PlayerManager : MonoBehaviour
 
         canvasManager.DisplayHand(currentPlayer.cards);
         canvasManager.UpdatePlayerName(currentPlayer.name);
+        canvasManager.UpdatePlayerLife(currentPlayer);
     }
 
     public void RemovePlayer(Player player)

@@ -2,34 +2,39 @@ using UnityEngine;
 
 public class Revolver
 {
-    private int bulletsInChamber;
-    private int maxChambers;
+    private int bullets;
+    private int currentChambers;
 
-    public Revolver(int maxChambers = 6, int startingBullets = 1)
+    public Revolver(int startingBullets = 1, int totalChambers = 6)
     {
-        this.maxChambers = maxChambers;
-        this.bulletsInChamber = startingBullets;
+        bullets = startingBullets;
+        currentChambers = totalChambers;
+    }
+
+    public int GetRemainingChambers()
+    {
+        return currentChambers;
     }
 
     public bool PullTrigger()
     {
-        int roll = Random.Range(1, maxChambers + 1);
+        int roll = Random.Range(1, currentChambers + 1);
 
-        if (roll <= bulletsInChamber)
+        if (roll <= bullets)
         {
             return true;
         }
 
-        IncreaseDanger();
+        DecreaseChambers();
 
         return false;
     }
 
-    private void IncreaseDanger()
+    private void DecreaseChambers()
     {
-        if (bulletsInChamber < maxChambers)
+        if (currentChambers > bullets)
         {
-            bulletsInChamber++;
+            currentChambers--;
         }
     }
 }
