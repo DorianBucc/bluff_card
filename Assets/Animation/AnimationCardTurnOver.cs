@@ -6,9 +6,12 @@ public class AnimationCardTurnOver : MonoBehaviour
     {
         CanvasManager.instance.cacherHand();
     }
-    public void EndTurnAnimation()
+    public void EndAnimation()
     {
         GetComponent<Animator>().enabled = false;
+    }
+    public void EndTurnAnimation()
+    {
         GameManager.instance.NextTurn();
     }
 }
