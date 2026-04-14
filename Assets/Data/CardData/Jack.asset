@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cf301be6fd116419495e3e99b6ebe2, type: 3}
   m_Name: Jack
   m_EditorClassIdentifier: Assembly-CSharp::CardTypeData
-  cardName: Valet
+  cardName: Jack
   type: 0
   sprite: {fileID: -7353156081931564349, guid: 8243ff28a1fc82f4e92e45f27c47995f, type: 3}

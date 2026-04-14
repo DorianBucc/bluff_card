@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private CardData currentTargetedCard;
     public Image ImageTargetedCard;
     public TextMeshProUGUI TextDebug;
+    public Animator animatorTurn;
 
     public void Awake()
     {
@@ -40,10 +41,15 @@ public class GameManager : MonoBehaviour
         PlayerManager.instance.InitializePlayers(playerCount);
 
         SetupRound();
+        CanvasManager canvasManager = CanvasManager.instance;
+        canvasManager.SetNumberOfCardsPlayedPreviousTurn(
+                currentTargetedCard.cardName
+            );      
     }
 
     private void SetupRound()
     {
+
         PlayerManager playerManager = PlayerManager.instance;
         CanvasManager canvasManager = CanvasManager.instance;
 
@@ -64,6 +70,7 @@ public class GameManager : MonoBehaviour
         InitializeTargetedCard();
 
         canvasManager.SetTargetedCardText(currentTargetedCard.cardName);
+        canvasManager.SetNumberOfCardsPlayedPreviousTurn(currentTargetedCard.cardName);
     }
 
     private List<Card> InitializeCards()
@@ -116,8 +123,6 @@ public class GameManager : MonoBehaviour
             playerManager.NextPlayer();
 
             canvasManager.SetNumberOfCardsPlayedPreviousTurn(
-                playerManager.GetPreviousPlayer(), 
-                stackManager.GetNumberOfCardsInStack(), 
                 currentTargetedCard.cardName
             );
 

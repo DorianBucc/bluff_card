@@ -49,11 +49,26 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    public void cacherHand() // Regarde pas tkt
+    {
+        foreach (CanvasCard canvasCard in canvasHand)  
+        {
+            canvasCard.Hide();
+        }
+    }
     public void HideHand()
     {
         foreach (CanvasCard canvasCard in canvasHand)  
         {
             canvasCard.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowHand()
+    {
+        foreach (CanvasCard canvasCard in canvasHand)  
+        {
+            canvasCard.Show();
         }
     }
 
@@ -103,9 +118,19 @@ public class CanvasManager : MonoBehaviour
         TargetedCardText.text = $"{text.ToUpper()}'S TABLE";
     }
 
-    public void SetNumberOfCardsPlayedPreviousTurn(Player previousPlayerName, int numberOfCardsPlayed, string targetedCardName)
+    public void SetNumberOfCardsPlayedPreviousTurn(string targetedCardName)
     {
-        NumberOfCardsPlayedText.text = $"{previousPlayerName.name.ToUpper()}\n CLAIMS\n {numberOfCardsPlayed} x {targetedCardName}";
+        Player previousPlayerName = PlayerManager.instance.GetPreviousPlayer();
+        int numberOfCardsPlayed = StackManager.instance.GetNumberOfCardsInStack();
+        if(numberOfCardsPlayed > 0)
+        {
+            NumberOfCardsPlayedText.text = $"{previousPlayerName.name.ToUpper()}\n CLAIMS\n {numberOfCardsPlayed} x {targetedCardName}";
+        }
+        else
+        {
+            NumberOfCardsPlayedText.text = "Waiting For First Claim";
+        }
+
     }
 
     public void MoveCardsToStack(List<Card> cards, System.Action onComplete)
