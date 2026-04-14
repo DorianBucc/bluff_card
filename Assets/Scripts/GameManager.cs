@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         playerManager.ClearPlayersHands();
         playerManager.DealPlayersCards(cards, cardsPerPlayer);
-
+        canvasManager.HideStack();
         canvasManager.UpdatePlayerName(playerManager.currentPlayer.name);
         canvasManager.UpdatePlayerLife(playerManager.currentPlayer);
         canvasManager.DisplayHand(playerManager.currentPlayer.cards);
@@ -100,9 +100,6 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         CardManager cardManager = CardManager.instance;
-        CanvasManager canvasManager = CanvasManager.instance;
-        PlayerManager playerManager = PlayerManager.instance;
-        StackManager stackManager = StackManager.instance;
 
         if (cardManager.selectedCards.Count <= 0)
         {
@@ -110,13 +107,22 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        cardManager.ConfirmSelectedCard();
+        cardManager.ConfirmSelectedCard(() =>
+        {
+            PlayerManager playerManager = PlayerManager.instance;
+            CanvasManager canvasManager = CanvasManager.instance;
+            StackManager stackManager = StackManager.instance;
 
-        playerManager.NextPlayer();
+            playerManager.NextPlayer();
 
-        canvasManager.SetNumberOfCardsPlayedPreviousTurn(playerManager.GetPreviousPlayer(), stackManager.GetNumberOfCardsInStack(), currentTargetedCard.cardName);
+            canvasManager.SetNumberOfCardsPlayedPreviousTurn(
+                playerManager.GetPreviousPlayer(), 
+                stackManager.GetNumberOfCardsInStack(), 
+                currentTargetedCard.cardName
+            );
 
-        currentTurnInRound++;
+            currentTurnInRound++;
+        });
     }
 
     public void NextRound()

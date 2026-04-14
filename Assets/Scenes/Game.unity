@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 2842719528732765430, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -628,6 +632,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
   m_PrefabInstance: {fileID: 301029784}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &301029786 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3333185412458016603, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+  m_PrefabInstance: {fileID: 301029784}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601f6348d0e2bc4489db7097fe47d9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasCard
 --- !u!1001 &371631470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3960,6 +3975,7 @@ MonoBehaviour:
   - {fileID: 1199815247}
   - {fileID: 1797361439}
   - {fileID: 1238719688}
+  stackCanvasCard: {fileID: 301029786}
   TextPlayerName: {fileID: 1125009859}
   TargetedCardText: {fileID: 603989537}
   NumberOfCardsPlayedText: {fileID: 1980877363}
