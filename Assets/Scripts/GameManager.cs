@@ -102,7 +102,8 @@ public class GameManager : MonoBehaviour
         ImageTargetedCard.sprite = currentTargetedCard.sprite;
     }
 
-    public void NextTurn()
+
+    public void EndTurn()
     {
         if (isGameOver) return;
 
@@ -113,21 +114,24 @@ public class GameManager : MonoBehaviour
             CanvasManager.instance.ShakeHand();
             return;
         }
-
         cardManager.ConfirmSelectedCard(() =>
         {
-            PlayerManager playerManager = PlayerManager.instance;
-            CanvasManager canvasManager = CanvasManager.instance;
-            StackManager stackManager = StackManager.instance;
-
-            playerManager.NextPlayer();
-
-            canvasManager.SetNumberOfCardsPlayedPreviousTurn(
-                currentTargetedCard.cardName
-            );
-
-            currentTurnInRound++;
+            animatorTurn.enabled = true;
         });
+    }
+    public void NextTurn()
+    {
+        PlayerManager playerManager = PlayerManager.instance;
+        CanvasManager canvasManager = CanvasManager.instance;
+
+        playerManager.NextPlayer();
+
+        canvasManager.SetNumberOfCardsPlayedPreviousTurn(
+            currentTargetedCard.cardName
+        );
+
+        currentTurnInRound++;
+        
     }
 
     public void NextRound()
