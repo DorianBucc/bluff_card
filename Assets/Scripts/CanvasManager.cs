@@ -7,6 +7,8 @@ public class CanvasManager : MonoBehaviour
     static public CanvasManager instance;
     public List<CanvasCard> canvasHand = new();
     public TextMeshProUGUI TextPlayerName;
+    public TextMeshProUGUI TargetedCardText;
+    public TextMeshProUGUI NumberOfCardsPlayedText;
 
     public void Awake()
     {
