@@ -3850,7 +3850,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ca7d1732f6b95b4998d5ea02da5c35b, type: 2}
   - {fileID: 11400000, guid: 00332ed58e44fa84bb66e19501cae9d9, type: 2}
   ImageTargetedCard: {fileID: 154066781}
-  TextDebug: {fileID: 1213003941}
+  TextInformation: {fileID: 1213003941}
   animatorTurn: {fileID: 2108103138}
 --- !u!1001 &2071576537
 PrefabInstance:

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public List<CardData> targetedCards;
     private CardData currentTargetedCard;
     public Image ImageTargetedCard;
-    public TextMeshProUGUI TextDebug;
+    public TextMeshProUGUI TextInformation;
     public Animator animatorTurn;
 
     public void Awake()
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         canvasManager.UpdatePlayerName(playerManager.currentPlayer.name);
         canvasManager.UpdatePlayerLife(playerManager.currentPlayer);
         canvasManager.DisplayHand(playerManager.currentPlayer.cards);
+        canvasManager.DisplayHandOtherPlayer(playerManager.GetPreviousPlayer().cards);
 
         InitializeTargetedCard();
 
@@ -143,7 +144,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
 
-        TextDebug.text = string.Empty;
+        TextInformation.text = string.Empty;
 
         SetupRound();
     }
@@ -183,22 +184,19 @@ public class GameManager : MonoBehaviour
 
                 Player winner = playerManager.GetWinner();
 
-                TextDebug.text = $"{loser.name} died ! {winner.name} won !";
-
-                canvasManager.UpdatePlayerName(winner.name);
-                canvasManager.DisableHand();
+                TextInformation.text = $"{loser.name} lost... and died ! {winner.name} won !";
                 
                 return;
             }
 
-            TextDebug.text = $"{loser.name} died !";
+            TextInformation.text = $"{loser.name} died !";
 
             // Si le perdant meurt, le joueur suivant commence le prochain tour
             playerManager.SetCurrentPlayer(nextPlayer);
         }
         else
         {
-            TextDebug.text = $"{loser.name} lost... and he survived !";
+            TextInformation.text = $"{loser.name} lost... but survived !";
 
             // Si le perdant survit, il commence le prochain tour
             playerManager.SetCurrentPlayer(loser);

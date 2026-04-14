@@ -145,7 +145,7 @@ public class CanvasManager : MonoBehaviour
         int numberOfCardsPlayed = StackManager.instance.GetNumberOfCardsInStack();
         if(numberOfCardsPlayed > 0)
         {
-            NumberOfCardsPlayedText.text = $"{previousPlayerName.name.ToUpper()}\n CLAIMS\n {numberOfCardsPlayed} x {targetedCardName}";
+            NumberOfCardsPlayedText.text = $"{previousPlayerName.name.ToUpper()}\n CLAIMS\n {numberOfCardsPlayed} x {targetedCardName.ToUpper()}";
         }
         else
         {

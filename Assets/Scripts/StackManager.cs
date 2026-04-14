@@ -33,7 +33,7 @@ public class StackManager : MonoBehaviour
     {
         foreach (Card card in stack)
         {
-            if (card.data != currentCardTargeted || card.data.cardName == "Joker")
+            if (card.data != currentCardTargeted && card.data.cardName != "Joker")
                 return false;
         }
 
