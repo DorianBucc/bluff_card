@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int playerCount = 3;
+    public int playerCount = 2;
     public int cardsPerPlayer = 5;
     public int currentRound = 0;
     public int currentTurnInRound = 0;
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         canvasManager.DisplayHand(playerManager.currentPlayer.cards);
 
         InitializeTargetedCard();
+        canvasManager.SetTargetedCardText(currentTargetedCard.cardName);
     }
 
     private List<Card> InitializeCards()
@@ -97,6 +98,9 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         CardManager cardManager = CardManager.instance;
+        CanvasManager canvasManager = CanvasManager.instance;
+        PlayerManager playerManager = PlayerManager.instance;
+        StackManager stackManager = StackManager.instance;
 
         if (cardManager.selectedCards.Count <= 0)
         {
@@ -106,7 +110,9 @@ public class GameManager : MonoBehaviour
 
         cardManager.ConfirmSelectedCard();
 
-        PlayerManager.instance.NextPlayer();
+        playerManager.NextPlayer();
+
+        canvasManager.SetNumberOfCardsPlayedPreviousTurn(playerManager.GetPreviousPlayer(), stackManager.GetNumberOfCardsInStack(), currentTargetedCard.cardName);
 
         currentTurnInRound++;
     }

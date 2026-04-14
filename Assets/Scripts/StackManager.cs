@@ -14,6 +14,11 @@ public class StackManager : MonoBehaviour
         } 
     }
 
+    public int GetNumberOfCardsInStack()
+    {
+        return stack.Count;
+    }
+
     public void UpdateStack(List<Card> cards)
     {
         stack = new List<Card>(cards);

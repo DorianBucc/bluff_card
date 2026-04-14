@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -67,5 +68,15 @@ public class CanvasManager : MonoBehaviour
     public void UpdatePlayerName(string name)
     {
         TextPlayerName.text = name;
+    }
+
+    public void SetTargetedCardText(string text)
+    {
+        TargetedCardText.text = $"{text.ToUpper()}'S TABLE";
+    }
+
+    public void SetNumberOfCardsPlayedPreviousTurn(Player previousPlayerName, int numberOfCardsPlayed, string targetedCardName)
+    {
+        NumberOfCardsPlayedText.text = $"{previousPlayerName.name.ToUpper()}\n CLAIMS\n {numberOfCardsPlayed} x {targetedCardName}";
     }
 }
