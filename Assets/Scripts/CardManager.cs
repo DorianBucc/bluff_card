@@ -46,7 +46,6 @@ public class CardManager : MonoBehaviour
         canvasManager.MoveCardsToStack(new List<Card>(selectedCards), () =>
         {   
             canvasManager.UnselectHand();
-            canvasManager.HideHand();
             selectedCards.Clear();
 
             onComplete?.Invoke();

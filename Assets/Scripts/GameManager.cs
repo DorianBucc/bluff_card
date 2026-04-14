@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
                 TextDebug.text = $"{loser.name} died ! {winner.name} won !";
 
                 canvasManager.UpdatePlayerName(winner.name);
-                canvasManager.HideHand();
+                canvasManager.DisableHand();
                 
                 return;
             }

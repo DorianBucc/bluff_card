@@ -526,6 +526,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
   m_PrefabInstance: {fileID: 291708788}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &291708791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3333185412458016603, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+  m_PrefabInstance: {fileID: 291708788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601f6348d0e2bc4489db7097fe47d9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasCard
 --- !u!1001 &301029784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1898,6 +1909,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
   m_PrefabInstance: {fileID: 997116097}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &997116100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3333185412458016603, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+  m_PrefabInstance: {fileID: 997116097}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601f6348d0e2bc4489db7097fe47d9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasCard
 --- !u!1 &1053543744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,6 +2146,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StackManager
   stack: []
+--- !u!114 &1194129856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3333185412458016603, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+  m_PrefabInstance: {fileID: 371631470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601f6348d0e2bc4489db7097fe47d9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasCard
 --- !u!1001 &1199815245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2598,6 +2631,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7760415261014489602, guid: c5be6df7ae109064ca8c18fa6cd455e8, type: 3}
   m_PrefabInstance: {fileID: 1238719686}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1410800791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3333185412458016603, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+  m_PrefabInstance: {fileID: 916209931}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601f6348d0e2bc4489db7097fe47d9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasCard
 --- !u!1 &1419704201
 GameObject:
   m_ObjectHideFlags: 0
@@ -3450,11 +3494,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2071576538}
-  - {fileID: 916209932}
-  - {fileID: 371631471}
-  - {fileID: 291708789}
   - {fileID: 997116098}
+  - {fileID: 291708789}
+  - {fileID: 371631471}
+  - {fileID: 916209932}
+  - {fileID: 2071576538}
   m_Father: {fileID: 2108103137}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3920,6 +3964,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6196493268137104366, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
   m_PrefabInstance: {fileID: 2071576537}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2071576540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3333185412458016603, guid: aa9c38c68e65b8048998157ee0aef6bd, type: 3}
+  m_PrefabInstance: {fileID: 2071576537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601f6348d0e2bc4489db7097fe47d9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasCard
 --- !u!1 &2081232935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,6 +4025,12 @@ MonoBehaviour:
   - {fileID: 1986655744}
   - {fileID: 1654933084}
   - {fileID: 587949845}
+  canvasHandOtherPlayer:
+  - {fileID: 1194129856}
+  - {fileID: 291708791}
+  - {fileID: 1410800791}
+  - {fileID: 997116100}
+  - {fileID: 2071576540}
   canvasBullets:
   - {fileID: 1721729865}
   - {fileID: 27376907}

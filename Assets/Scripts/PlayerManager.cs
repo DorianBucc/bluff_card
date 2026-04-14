@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         CanvasManager canvasManager = CanvasManager.instance;
-
+        canvasManager.DisplayHandOtherPlayer(GetPreviousPlayer().cards);
         canvasManager.DisplayHand(currentPlayer.cards);
         canvasManager.UpdatePlayerName(currentPlayer.name);
         canvasManager.UpdatePlayerLife(currentPlayer);

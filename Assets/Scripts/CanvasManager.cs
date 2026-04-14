@@ -8,6 +8,7 @@ public class CanvasManager : MonoBehaviour
 {
     static public CanvasManager instance;
     public List<CanvasCard> canvasHand = new();
+    public List<CanvasCard> canvasHandOtherPlayer = new();
     public List<GameObject> canvasBullets = new();
     public CanvasCard stackCanvasCard;
     public TextMeshProUGUI TextPlayerName;
@@ -34,6 +35,7 @@ public class CanvasManager : MonoBehaviour
 
     public void DisplayHand(List<Card> cards)
     {
+        DisableHand();
         int index = 0;
 
         foreach (Card card in cards)  
@@ -48,6 +50,18 @@ public class CanvasManager : MonoBehaviour
             index++;
         }
     }
+    public void DisplayHandOtherPlayer(List<Card> cards)
+    {
+        DisableHandOtherPlayer();
+        int index = 0;
+
+        foreach (Card card in cards)  
+        {
+            CanvasCard canvasCard = canvasHandOtherPlayer[index];
+            canvasCard.gameObject.SetActive(true);
+            index++;
+        }
+    }
 
     public void cacherHand()
     {
@@ -56,9 +70,16 @@ public class CanvasManager : MonoBehaviour
             canvasCard.Hide();
         }
     }
-    public void HideHand()
+    public void DisableHand()
     {
         foreach (CanvasCard canvasCard in canvasHand)  
+        {
+            canvasCard.gameObject.SetActive(false);
+        }
+    }
+    public void DisableHandOtherPlayer()
+    {
+        foreach (CanvasCard canvasCard in canvasHandOtherPlayer)  
         {
             canvasCard.gameObject.SetActive(false);
         }
