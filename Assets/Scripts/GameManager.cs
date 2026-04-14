@@ -139,7 +139,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(NextRoundRoutine());
     }
 
-    // Temporaire
     private IEnumerator NextRoundRoutine()
     {
         yield return new WaitForSeconds(2.0f);
@@ -184,7 +183,7 @@ public class GameManager : MonoBehaviour
 
                 Player winner = playerManager.GetWinner();
 
-                TextDebug.text = $"{loser.name} lost and died ! {winner.name} won !";
+                TextDebug.text = $"{loser.name} died ! {winner.name} won !";
 
                 canvasManager.UpdatePlayerName(winner.name);
                 canvasManager.HideHand();
@@ -192,14 +191,14 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            TextDebug.text = $"{loser.name} lost and died !";
+            TextDebug.text = $"{loser.name} died !";
 
             // Si le perdant meurt, le joueur suivant commence le prochain tour
             playerManager.SetCurrentPlayer(nextPlayer);
         }
         else
         {
-            TextDebug.text = $"{loser.name} lost but survived !";
+            TextDebug.text = $"{loser.name} lost... and he survived !";
 
             // Si le perdant survit, il commence le prochain tour
             playerManager.SetCurrentPlayer(loser);

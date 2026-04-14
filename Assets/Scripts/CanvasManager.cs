@@ -128,7 +128,7 @@ public class CanvasManager : MonoBehaviour
         }
         else
         {
-            NumberOfCardsPlayedText.text = "Waiting For First Claim";
+            NumberOfCardsPlayedText.text = "WAITING FOR FIRST CLAIM";
         }
 
     }
