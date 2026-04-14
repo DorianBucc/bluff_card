@@ -93,6 +93,6 @@ public class CanvasManager : MonoBehaviour
 
     public void SetNumberOfCardsPlayedPreviousTurn(Player previousPlayerName, int numberOfCardsPlayed, string targetedCardName)
     {
-        NumberOfCardsPlayedText.text = $"{previousPlayerName.name.ToUpper()}\n CLAIMS\n {numberOfCardsPlayed} x {targetedCardName}";
+        NumberOfCardsPlayedText.text = $"{previousPlayerName.name.ToUpper()}\n CLAIMS\n {numberOfCardsPlayed} x {targetedCardName.ToUpper()}";
     }
 }
